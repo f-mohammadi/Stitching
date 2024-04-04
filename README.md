@@ -5,3 +5,6 @@ FRMIS is fast and robust automatic stitching algorithm to generate a consistent 
 This repository contains source code. All codes were implemented using Matlab.
 
 FRMIS is designed to stitch 2D image from different image modalities, including bright-field, phase-contrast, and fluorescence. 
+
+
+## Usage
