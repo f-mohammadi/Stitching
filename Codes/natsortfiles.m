@@ -136,29 +136,29 @@ vec{numel(len)} = [];
 %
 % Natural-order sort of the file extensions and filenames:
 if nargout<3 % faster:
-	[~,ndx] = natsort(ext,varargin{:});
-	[~,ids] = natsort(fnm(ndx),varargin{:});
+    [~,ndx] = natsort(ext,varargin{:});
+    [~,ids] = natsort(fnm(ndx),varargin{:});
 else % for debugging:
-	[~,ndx,dbg{num+2}] = natsort(ext,varargin{:});
-	[~,ids,tmp] = natsort(fnm(ndx),varargin{:});
-	[~,idd] = sort(ndx);
-	dbg{num+1} = tmp(idd,:);
+    [~,ndx,dbg{num+2}] = natsort(ext,varargin{:});
+    [~,ids,tmp] = natsort(fnm(ndx),varargin{:});
+    [~,idd] = sort(ndx);
+    dbg{num+1} = tmp(idd,:);
 end
 ndx = ndx(ids);
 %
 % Natural-order sort of the directory names:
 for k = num:-1:1
-	idx = len>=k;
-	vec(:) = {''};
-	vec(idx) = cellfun(@(c)c(k),pth(idx));
-	if nargout<3 % faster:
-		[~,ids] = natsort(vec(ndx),varargin{:});
-	else % for debugging:
-		[~,ids,tmp] = natsort(vec(ndx),varargin{:});
-		[~,idd] = sort(ndx);
-		dbg{k} = tmp(idd,:);
-	end
-	ndx = ndx(ids);
+    idx = len>=k;
+    vec(:) = {''};
+    vec(idx) = cellfun(@(c)c(k),pth(idx));
+    if nargout<3 % faster:
+        [~,ids] = natsort(vec(ndx),varargin{:});
+    else % for debugging:
+        [~,ids,tmp] = natsort(vec(ndx),varargin{:});
+        [~,idd] = sort(ndx);
+        dbg{k} = tmp(idd,:);
+    end
+    ndx = ndx(ids);
 end
 %
 % Return the sorted array and indices:

@@ -156,36 +156,36 @@ function [Y,ndx,dbg] = natsort(X,rgx,varargin)
 fun = @(c)cellfun('isclass',c,'char') & cellfun('size',c,1)<2 & cellfun('ndims',c)<3;
 %
 if iscell(X)
-	assert(all(fun(X(:))),...
-		'SC:natsort:X:CellInvalidContent',...
-		'First input <X> cell array must contain only character row vectors.')
-	Y = X(:);
+    assert(all(fun(X(:))),...
+        'SC:natsort:X:CellInvalidContent',...
+        'First input <X> cell array must contain only character row vectors.')
+    Y = X(:);
 elseif ischar(X) % Convert char matrix:
-	Y = cellstr(X);
+    Y = cellstr(X);
 else % Convert string, categorical, datetime, etc.:
-	Y = cellstr(X(:));
+    Y = cellstr(X(:));
 end
 %
 if nargin<2 || isnumeric(rgx)&&isequal(rgx,[])
-	rgx = '\d+';
+    rgx = '\d+';
 elseif ischar(rgx)
-	assert(ndims(rgx)<3 && size(rgx,1)==1,...
-		'SC:natsort:rgx:NotCharVector',...
-		'Second input <rgx> character row vector must have size 1xN.') %#ok<ISMAT>
-	nsChkRgx(rgx)
+    assert(ndims(rgx)<3 && size(rgx,1)==1,...
+        'SC:natsort:rgx:NotCharVector',...
+        'Second input <rgx> character row vector must have size 1xN.') %#ok<ISMAT>
+    nsChkRgx(rgx)
 else
-	rgx = ns1s2c(rgx);
-	assert(ischar(rgx),...
-		'SC:natsort:rgx:InvalidType',...
-		'Second input <rgx> must be a character row vector or a string scalar.')
-	nsChkRgx(rgx)
+    rgx = ns1s2c(rgx);
+    assert(ischar(rgx),...
+        'SC:natsort:rgx:InvalidType',...
+        'Second input <rgx> must be a character row vector or a string scalar.')
+    nsChkRgx(rgx)
 end
 %
 varargin = cellfun(@ns1s2c, varargin, 'UniformOutput',false);
 %
 assert(all(fun(varargin)),...
-	'SC:natsort:option:InvalidType',...
-	'All optional arguments must be character row vectors or string scalars.')
+    'SC:natsort:option:InvalidType',...
+    'All optional arguments must be character row vectors or string scalars.')
 %
 % Character case:
 ccm = strcmpi(varargin,'matchcase');
@@ -211,9 +211,9 @@ nsAssert(varargin, sfx,  'sscanfFormat', 'SSCANF format')
 %
 % SSCANF format:
 if nnz(sfx)
-	fmt = varargin{sfx};
+    fmt = varargin{sfx};
 else
-	fmt = '%f';
+    fmt = '%f';
 end
 %
 %% Identify and Convert Numbers %%
@@ -221,18 +221,18 @@ end
 [nbr,spl] = regexpi(Y(:),rgx, 'match','split', varargin{ccx});
 %
 if numel(nbr)
-	tmp = [nbr{:}];
-	if strcmp(fmt,'%b')
-		tmp = regexprep(tmp,'^0[Bb]','');
-		vec = cellfun(@(s)pow2(numel(s)-1:-1:0)*sscanf(s,'%1d'),tmp);
-	else
-		vec = sscanf(sprintf(' %s',tmp{:}),fmt);
-	end
-	assert(numel(vec)==numel(tmp),...
-		'SC:natsort:sscanf:TooManyValues',...
-		'The %s format must return one value for each input number.',fmt)
+    tmp = [nbr{:}];
+    if strcmp(fmt,'%b')
+        tmp = regexprep(tmp,'^0[Bb]','');
+        vec = cellfun(@(s)pow2(numel(s)-1:-1:0)*sscanf(s,'%1d'),tmp);
+    else
+        vec = sscanf(sprintf(' %s',tmp{:}),fmt);
+    end
+    assert(numel(vec)==numel(tmp),...
+        'SC:natsort:sscanf:TooManyValues',...
+        'The %s format must return one value for each input number.',fmt)
 else
-	vec = [];
+    vec = [];
 end
 %
 %% Allocate Data %%
@@ -255,70 +255,70 @@ arn(idn) = vec;
 %% Debugging Array %%
 %
 if nargout>2
-	mxw = 0;
-	for k = 1:nmx
-		mxw = max(mxw,numel(nbr{k})+nnz(~cellfun('isempty',spl{k})));
-	end
-	dbg = cell(nmx,mxw);
-	for k = 1:nmx
-		tmp = spl{k};
-		tmp(2,1:end-1) = num2cell(arn(idn(:,k),k));
-		tmp(cellfun('isempty',tmp)) = [];
-		dbg(k,1:numel(tmp)) = tmp;
-	end
+    mxw = 0;
+    for k = 1:nmx
+        mxw = max(mxw,numel(nbr{k})+nnz(~cellfun('isempty',spl{k})));
+    end
+    dbg = cell(nmx,mxw);
+    for k = 1:nmx
+        tmp = spl{k};
+        tmp(2,1:end-1) = num2cell(arn(idn(:,k),k));
+        tmp(cellfun('isempty',tmp)) = [];
+        dbg(k,1:numel(tmp)) = tmp;
+    end
 end
 %
 %% Sort Columns %%
 %
 if ~any(ccm) % ignorecase
-	ars = lower(ars);
+    ars = lower(ars);
 end
 %
 if any(orb) % char<num
-	% Determine max character code:
-	mxc = 'X';
-	tmp = warning('off','all');
-	mxc(1) = Inf;
-	warning(tmp)
-	mxc(mxc==0) = 255; % Octave
-	% Append max character code to the split text:
-	for k = reshape(find(idn),1,[])
-		ars{k}(1,end+1) = mxc;
-	end
+    % Determine max character code:
+    mxc = 'X';
+    tmp = warning('off','all');
+    mxc(1) = Inf;
+    warning(tmp)
+    mxc(mxc==0) = 255; % Octave
+    % Append max character code to the split text:
+    for k = reshape(find(idn),1,[])
+        ars{k}(1,end+1) = mxc;
+    end
 end
 %
 idn(isnan(arn)) = ~any(nab); % NaN<num
 %
 if any(sdd)
-	[~,ndx] = sort(nsGroup(ars(mxs,:)),'descend');
-	for k = mxs-1:-1:1
-		[~,idx] = sort(arn(k,ndx),'descend');
-		ndx = ndx(idx);
-		[~,idx] = sort(idn(k,ndx),'descend');
-		ndx = ndx(idx);
-		[~,idx] = sort(nsGroup(ars(k,ndx)),'descend');
-		ndx = ndx(idx);
-	end
+    [~,ndx] = sort(nsGroup(ars(mxs,:)),'descend');
+    for k = mxs-1:-1:1
+        [~,idx] = sort(arn(k,ndx),'descend');
+        ndx = ndx(idx);
+        [~,idx] = sort(idn(k,ndx),'descend');
+        ndx = ndx(idx);
+        [~,idx] = sort(nsGroup(ars(k,ndx)),'descend');
+        ndx = ndx(idx);
+    end
 else
-	[~,ndx] = sort(ars(mxs,:)); % ascend
-	for k = mxs-1:-1:1
-		[~,idx] = sort(arn(k,ndx),'ascend');
-		ndx = ndx(idx);
-		[~,idx] = sort(idn(k,ndx),'ascend');
-		ndx = ndx(idx);
-		[~,idx] = sort(ars(k,ndx)); % ascend
-		ndx = ndx(idx);
-	end
+    [~,ndx] = sort(ars(mxs,:)); % ascend
+    for k = mxs-1:-1:1
+        [~,idx] = sort(arn(k,ndx),'ascend');
+        ndx = ndx(idx);
+        [~,idx] = sort(idn(k,ndx),'ascend');
+        ndx = ndx(idx);
+        [~,idx] = sort(ars(k,ndx)); % ascend
+        ndx = ndx(idx);
+    end
 end
 %
 %% Outputs %%
 %
 if ischar(X)
-	ndx = ndx(:);
-	Y = X(ndx,:);
+    ndx = ndx(:);
+    Y = X(ndx,:);
 else
-	ndx = reshape(ndx,size(X));
-	Y = X(ndx);
+    ndx = reshape(ndx,size(X));
+    Y = X(ndx);
 end
 %
 end
@@ -326,21 +326,21 @@ end
 function nsChkRgx(rgx)
 tmp = '^((match|ignore)case|(de|a)scend|(char|nan|num)[<>](char|nan|num)|%[a-z]+)$';
 assert(isempty(regexpi(rgx,tmp,'once')),'SC:natsort:rgx:OptionMixUp',...
-	['Second input <rgx> must be a regular expression that matches numbers.',...
-	'\nThe provided input "%s" is one of the optional arguments (inputs 3+).'],rgx)
+    ['Second input <rgx> must be a regular expression that matches numbers.',...
+    '\nThe provided input "%s" is one of the optional arguments (inputs 3+).'],rgx)
 if isempty(regexpi('0',rgx,'once'))
-	warning('SC:natsort:rgx:SanityCheck',...
-		['Second input <rgx> must be a regular expression that matches numbers.',...
-		'\nThe provided regular expression does not match the digit "0", which\n',...
-		'may be acceptable (e.g. if literals, quantifiers, or lookarounds are used).'...
-		'\nThe provided regular expression: "%s"'],rgx)
+    warning('SC:natsort:rgx:SanityCheck',...
+        ['Second input <rgx> must be a regular expression that matches numbers.',...
+        '\nThe provided regular expression does not match the digit "0", which\n',...
+        'may be acceptable (e.g. if literals, quantifiers, or lookarounds are used).'...
+        '\nThe provided regular expression: "%s"'],rgx)
 end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%nsChkRgx
 function arr = ns1s2c(arr)
 % If scalar string then extract the character vector, otherwise data is unchanged.
 if isa(arr,'string') && isscalar(arr)
-	arr = arr{1};
+    arr = arr{1};
 end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ns1s2c
@@ -348,13 +348,13 @@ function nsAssert(vin,vix,ids,txt)
 % Throw an error if an option is overspecified or unsupported.
 tmp = sprintf('The provided inputs:%s',sprintf(' "%s"',vin{vix}));
 if nargin>2
-	assert(nnz(vix)<2,...
-		sprintf('SC:natsort:option:%sOverspecified',ids),...
-		'The %s option may only be specified once.\n%s',txt,tmp)
+    assert(nnz(vix)<2,...
+        sprintf('SC:natsort:option:%sOverspecified',ids),...
+        'The %s option may only be specified once.\n%s',txt,tmp)
 else
-	assert(~any(vix),...
-		'SC:natsort:option:InvalidOptions',...
-		'Invalid options provided.\n%s',tmp)
+    assert(~any(vix),...
+        'SC:natsort:option:InvalidOptions',...
+        'Invalid options provided.\n%s',tmp)
 end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%nsAssert

@@ -2,7 +2,7 @@ function [tform, inlierIdx, status] = ...
     algEstimateGeometricTransform_customized(matchedPoints1, matchedPoints2,...
     transformType, reportError, funcName, is2D, varargin)
 % Main algorithm used by estimateGeometridTransform2D,
-% estimateGeometricTransform3D and estimateGeometricTransform. 
+% estimateGeometricTransform3D and estimateGeometricTransform.
 
 % No input validation is done in this function.
 % matchedPoints1   - M-by-2 matrix or M-by-3 matrix of coordinates
@@ -26,7 +26,7 @@ statusCode = struct(...
 
 % Parse and check inputs
 [points1, points2, ransacParams, sampleSize, tformType, status, classToUse] = ...
-   parseEstimateGeometricTransform_customized(statusCode,...
+    parseEstimateGeometricTransform_customized(statusCode,...
     matchedPoints1, matchedPoints2, transformType, funcName, is2D,...
     varargin{:});
 
@@ -41,14 +41,14 @@ end
 if status == statusCode.NoError
     ransacFuncs = getRansacFunctions(tformType, is2D);
     points = cast(cat(3, points1, points2), classToUse);
-    
+
     [isFound, tmatrix, inlierIdx] = vision.internal.ransac.msac(...
         points, ransacParams, ransacFuncs);
-    
+
     if ~isFound
         status = statusCode.NotEnoughInliers;
     end
-    
+
     % Do an extra check to verify the tform matrix. Check if matrix is
     % singular or contains infs or nans.
     if isequal(det(tmatrix),0) || any(~isfinite(tmatrix(:)))
@@ -301,8 +301,8 @@ pt1h = [points1, ones(numPoints, 1, 'like', points)];
 tpoints1 = pt1h * tform;
 
 dis = sqrt((tpoints1(:,1) - points2(:,1)).^2 +...
-           (tpoints1(:,2) - points2(:,2)).^2 +...
-           (tpoints1(:,3) - points2(:,3)).^2);
+    (tpoints1(:,2) - points2(:,2)).^2 +...
+    (tpoints1(:,3) - points2(:,3)).^2);
 end
 
 %==========================================================================

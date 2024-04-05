@@ -15,34 +15,34 @@
 
 
 classdef StitchingConstants
-  properties (Constant)
-    % Control options
-    USE_GPU = false;
-    NUM_NCC_HILL_CLIMB_SEARCH_POINTS = 0; % for performing random search with hill climbing on ncc optimization
-    USE_EXHAUSTIVE_CORRELAION_SEARCH = false;
-    
-    VALID_TRANSLATION_CC_OFFSET = 3;
-    NB_FFT_PEAKS = 2;
-    VALID_TRANSLATION_HEURISIC_CC_THRESHOLD = 0.5;
-    
-    % Minimum Spanning Tree Constants
-    MST_START_TILE = 10;
-    MST_CONNECTED_NORTH = 11;
-    MST_CONNECTED_SOUTH = 12;
-    MST_CONNECTED_LEFT = 22;
-    MST_CONNECTED_RIGHT = 21;
-    
-    MST_NORTH = 11;
-    MST_SOUTH = 12;
-    MST_WEST = 22;
-    MST_EAST = 21;
-    
-    % Overlap Computation Constants
-    MLE_OPTIMIZATION_STALL_COUNT = 20;
-  end
-  
-  % direction constants
-  enumeration
-    NORTH, SOUTH, EAST, WEST
-  end
+    properties (Constant)
+        % Control options
+        USE_GPU = false;
+        NUM_NCC_HILL_CLIMB_SEARCH_POINTS = 0; % for performing random search with hill climbing on ncc optimization
+        USE_EXHAUSTIVE_CORRELAION_SEARCH = false;
+
+        VALID_TRANSLATION_CC_OFFSET = 3;
+        NB_FFT_PEAKS = 2;
+        VALID_TRANSLATION_HEURISIC_CC_THRESHOLD = 0.5;
+
+        % Minimum Spanning Tree Constants
+        MST_START_TILE = 10;
+        MST_CONNECTED_NORTH = 11;
+        MST_CONNECTED_SOUTH = 12;
+        MST_CONNECTED_LEFT = 22;
+        MST_CONNECTED_RIGHT = 21;
+
+        MST_NORTH = 11;
+        MST_SOUTH = 12;
+        MST_WEST = 22;
+        MST_EAST = 21;
+
+        % Overlap Computation Constants
+        MLE_OPTIMIZATION_STALL_COUNT = 20;
+    end
+
+    % direction constants
+    enumeration
+        NORTH, SOUTH, EAST, WEST
+    end
 end

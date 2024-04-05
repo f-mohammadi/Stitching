@@ -13,37 +13,37 @@ if isSimulationMode
     % Instantiate an input parser
     parser = inputParser;
     parser.FunctionName = fileName;
-    
+
     % Specify the optional parameters
     parser.addParameter('MaxNumTrials', 1000);
     parser.addParameter('Confidence',   99);
-    
+
     if is2D
         parser.addParameter('MaxDistance',  1.5);
     else
-        parser.addParameter('MaxDistance',  1);      
+        parser.addParameter('MaxDistance',  1);
     end
-    
+
     % Parse and check optional parameters
     parser.parse(varargin{:});
     r = parser.Results;
-    
+
     maxNumTrials = r.MaxNumTrials;
     confidence   = r.Confidence;
     maxDistance  = r.MaxDistance;
-    
+
 else
     % Instantiate an input parser
     parms = struct( ...
         'MaxNumTrials',       uint32(0), ...
         'Confidence',         uint32(0), ...
         'MaxDistance',        uint32(0));
-    
+
     popt = struct( ...
         'CaseSensitivity', false, ...
         'StructExpand',    true, ...
         'PartialMatching', false);
-    
+
     % Specify the optional parameters
     optarg       = eml_parse_parameter_inputs(parms, popt,...
         varargin{:});

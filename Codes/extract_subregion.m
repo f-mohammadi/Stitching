@@ -17,8 +17,8 @@
 function [sub_I] = extract_subregion(I, x, y)
 [h, w] = size(I);
 if abs(x) >= w || abs(y) >= h
-  sub_I = [];
-  return;
+    sub_I = [];
+    return;
 end
 
 x_st = 1 + x;

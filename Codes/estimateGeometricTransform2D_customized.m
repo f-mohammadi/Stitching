@@ -100,7 +100,7 @@ function [tform, inlierIndex, status] ...
 %       ptsOriginal);
 %   [featuresDistorted, validPtsDistorted] = extractFeatures(distorted,...
 %       ptsDistorted);
-% 
+%
 %   % Match feature vectors
 %   indexPairs = matchFeatures(featuresOriginal, featuresDistorted);
 %   matchedPtsOriginal  = validPtsOriginal(indexPairs(:,1));
@@ -110,7 +110,7 @@ function [tform, inlierIndex, status] ...
 %   showMatchedFeatures(original, distorted, matchedPtsOriginal,...
 %       matchedPtsDistorted);
 %   title('Matched SURF points including outliers')
-% 
+%
 %   % Exclude the outliers and compute the transformation matrix
 %   [tformEst, inlierIndex] = estimateGeometricTransform2D(...
 %       matchedPtsDistorted, matchedPtsOriginal, 'affine');
@@ -119,7 +119,7 @@ function [tform, inlierIndex, status] ...
 %   showMatchedFeatures(original, distorted,...
 %       matchedPtsOriginal(inlierIndex), matchedPtsDistorted(inlierIndex));
 %   title('Matched inlier points')
-% 
+%
 %   % Recover the original image from the distorted image
 %   outputView = imref2d(size(original));
 %   recovered = imwarp(distorted, tformEst, 'OutputView', outputView);

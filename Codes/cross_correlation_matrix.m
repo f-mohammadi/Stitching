@@ -34,7 +34,7 @@ D = sqrt(I1'*I1) * sqrt(I2'*I2);
 cr = N/D;
 
 if ~isfinite(cr)
-  cr = -1;
+    cr = -1;
 end
 
 end
