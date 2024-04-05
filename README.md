@@ -23,4 +23,50 @@ Translation parameters.
 Graph weights, RMSE value, pairwise registration time, global alignment time,
 
 
+# Global Image Stitching
+
+This MATLAB script is designed to stitch a set of images together to create a single panoramic image. It implements global alignment algorithms such as Minimum Spanning Tree (MST) and Shortest Path Spanning Tree (SPT) for aligning the images.
+
+## Usage
+
+1. Clone or download the repository to your local machine.
+
+2. Open the MATLAB script `start_stitch.m`.
+
+3. Customize the script by setting the following parameters:
+
+    - `dataset_dir`: Directory containing the images to be stitched.
+    
+    - `dataset_name`: Name of the dataset.
+    
+    - `Optimization_option`: Choose between 'False' and 'True' to enable/disable optimization.
+    
+    - `GlobalRegistration_option`: Choose between 'MST' and 'SPT' for global registration.
+    
+    - `blend_method_options`: Choose between 'Overlay' and 'Linear' for blending method.
+    
+    - `alpha`: Alpha value for linear blending.
+    
+    - Parameters specific to your dataset such as `width`, `height`, `overlap`, `img_num`, `img_type`, `sort_type`, and `modality`.
+
+4. Run the script in MATLAB.
+
+## Output
+
+The script generates the stitched image and saves it as a JPEG file. It also saves the stitching results as a MAT file.
+
+## Customization
+
+You can customize the script further by adjusting parameters based on your specific dataset. Additionally, you can modify the code to incorporate different optimization, registration, and blending techniques.
+
+## Notes
+
+- Make sure to provide the correct path to the directory containing your dataset.
+
+- Adjust the parameters according to the properties of your dataset for optimal stitching results.
+
+- This script assumes that the images are named in a sequential order and can be sorted accordingly. If your images have a different naming convention, you may need to modify the sorting logic.
+
+- Ensure that the necessary MATLAB toolboxes (such as Image Processing Toolbox) are installed and accessible.
+
 
