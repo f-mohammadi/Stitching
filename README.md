@@ -37,10 +37,14 @@ Graph weights, RMSE value, pairwise registration time, global alignment time,
     
     - `alpha`: Alpha value for linear blending.
     
-    - Parameters specific to your dataset such as
+    Parameters specific to your dataset such as
     - `width`: Width of image grid (number of columns).
     - `height`: Height of image grid (number of rows).
-    - , `overlap`, `img_num`, `img_type`, `sort_type`, and `modality`.
+    - `overlap`: Overlap percent between adjacent tiles.
+    - `img_num`: Total number of tiles.
+    - `img_type`: Image file type.
+    - `sort_type`: Sorting type indicates patern of grid
+    - `modality`: Imaging modality to adjust the SURF's threshold value.
 
 4. Run the script in MATLAB.
 
