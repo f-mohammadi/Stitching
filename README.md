@@ -37,7 +37,7 @@ Graph weights, RMSE value, pairwise registration time, global alignment time,
     
     - `alpha`: Alpha value for linear blending.
     
-    Parameters specific to your dataset such as
+    Parameters specific to your dataset (available from Whole-Slide Imaging (WSI) ) such as:
     - `width`: Width of image grid (number of columns).
     - `height`: Height of image grid (number of rows).
     - `overlap`: Overlap percent between adjacent tiles.
