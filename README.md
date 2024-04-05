@@ -1,11 +1,6 @@
 # FRMIS: Fast and Robust Microscopic Image Stitching
 
-FRMIS is a fast and robust automatic stitching algorithm to generate a consistent whole-slide image. This algorithm utilizes dominant SURF features from a small part of the overlapping region to achieve pairwise registration and consider the number of matched features in the global alignment.
-
-This repository contains source code. All codes were implemented using Matlab.
-
-FRMIS is designed to stitch 2D images from different image modalities, including bright-field, phase-contrast, and fluorescence. 
-
+FRMIS is a fast and robust automatic stitching algorithm to generate a consistent whole-slide image. This algorithm utilizes dominant SURF features from a small part of the overlapping region to achieve pairwise registration and consider the number of matched features in the global alignment. It implements global alignment algorithms such as Minimum Spanning Tree (MST) and Shortest Path Spanning Tree (SPT) for aligning the images. FRMIS is designed to stitch 2D microscopic images from different image modalities, including bright-field, phase-contrast, and fluorescence. 
 
 ## Usage
 
@@ -21,11 +16,6 @@ You can select a blending option
 The output will be the stitched result and .mat file that contains tile positions, and the number of extracted,  matched, and inlier features for all tiles.
 Translation parameters.
 Graph weights, RMSE value, pairwise registration time, global alignment time,
-
-
-# Global Image Stitching
-
-This MATLAB script is designed to stitch a set of images together to create a single panoramic image. It implements global alignment algorithms such as Minimum Spanning Tree (MST) and Shortest Path Spanning Tree (SPT) for aligning the images.
 
 ## Usage
 
@@ -47,7 +37,10 @@ This MATLAB script is designed to stitch a set of images together to create a si
     
     - `alpha`: Alpha value for linear blending.
     
-    - Parameters specific to your dataset such as `width`, `height`, `overlap`, `img_num`, `img_type`, `sort_type`, and `modality`.
+    - Parameters specific to your dataset such as
+    - `width`: Width of image grid (number of columns).
+    - `height`: Height of image grid (number of rows).
+    - , `overlap`, `img_num`, `img_type`, `sort_type`, and `modality`.
 
 4. Run the script in MATLAB.
 
