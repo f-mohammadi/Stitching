@@ -4,21 +4,6 @@ FRMIS is a fast and robust automatic stitching algorithm to generate a consisten
 
 ## Usage
 
-The scan pattern in the WSI technique reveals the connection order of tiles and was used to sort them next to each other in a predefined pattern. 
-Users should enter a path Directory, dataset name, Width, and height, and overlap portion of images.
-The pattern of images. 
-This information is available in WSI images.
-There is an option to select the global alignment method MST or SPT
-Select if the user wants to do optimization or not.
-Select the modality of images to choose the threshold value. 
-You can select a blending option
-
-The output will be the stitched result and .mat file that contains tile positions, and the number of extracted,  matched, and inlier features for all tiles.
-Translation parameters.
-Graph weights, RMSE value, pairwise registration time, global alignment time,
-
-## Usage
-
 1. Clone or download the repository to your local machine.
 
 2. Open the MATLAB script `start_stitch.m`.
@@ -50,7 +35,7 @@ Graph weights, RMSE value, pairwise registration time, global alignment time,
 
 ## Output
 
-The script generates the stitched image and saves it as a JPG file. It also saves the stitching results as a MAT file.
+The script generates the stitched image and saves it as a JPG file. It also saves the stitching results as a MAT file contains:
 
 - `img_name_grid`: Grid containing the names of image files.
 - `Tx_west`: Horizontal translations for the west direction.
@@ -78,7 +63,7 @@ The script generates the stitched image and saves it as a JPG file. It also save
 - `tile_weights`: Weights assigned to each tile.
 - `global_y_img_pos`: Global Y position of images in the grid.
 - `global_x_img_pos`: Global X position of images in the grid.
-- `time_spanning_tree`: Time taken for computing the Minimum Spanning Tree (MST).
+- `time_global_alignment`: Time taken for computing the global alignment.
 - `time_assembling`: Time taken for assembling the stitched image.
 - `total_time`: Total time taken for the alignment process.
 - `X1`: Horizontal displacement of tiles.
@@ -88,10 +73,6 @@ The script generates the stitched image and saves it as a JPG file. It also save
 - `RMSE_west`: Root Mean Square Error (RMSE) for the western neighbor tiles.
 - `RMSE_north`: Root Mean Square Error (RMSE) for the northern neighbor tiles.
 - `average_RMSE_global`: Average RMSE for the global alignment.
-
-## Customization
-
-You can customize the script further by adjusting parameters based on your specific dataset. Additionally, you can modify the code to incorporate different optimization, registration, and blending techniques.
 
 ## Notes
 
