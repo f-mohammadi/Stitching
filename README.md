@@ -34,7 +34,7 @@ Fast and Robust Microscopic Image Stitching (FRMIS) is a fast and robust automat
     Example of parameters input to stitch image collections from different datasets:
     - for Tak dataset parameters the inputs are like below:
 
-![2024-05-05_191243](https://github.com/f-mohammadi/Stitching/assets/60792530/01544f4b-ebbe-4e54-8e3c-f2d5a2b9d260)
+    ![2024-05-05_191243](https://github.com/f-mohammadi/Stitching/assets/60792530/01544f4b-ebbe-4e54-8e3c-f2d5a2b9d260)
 
 
 4. Run the script in MATLAB.
