@@ -31,6 +31,7 @@ Fast and Robust Microscopic Image Stitching (FRMIS) is a fast and robust automat
     - `sort_type`: Sorting type indicates patern of grid (order of the tiles).
     - `modality`: Imaging modality to adjust the SURF's threshold value.
     Example of parameters input to stitch image collections from different datasets:
+    
     for Tak dataset parameters the inputs are like below:
 
 ![2024-05-05_191243](https://github.com/f-mohammadi/Stitching/assets/60792530/01544f4b-ebbe-4e54-8e3c-f2d5a2b9d260)
